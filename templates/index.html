@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noodfy - Tareas Diarias</title>
+    <link rel="stylesheet" href="/static/tasks.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Noodfy - Tareas Diarias</h1>
+        <form id="task-form" action="/add_task" method="post">
+            <input type="text" name="task" id="task" placeholder="Nueva Tarea">
+            <button type="submit">Añadir Tarea</button>
+        </form>
+        <ul id="task-list">
+            {% for task in tasks %}
+                <li>
+                    <input type="checkbox" {% if task.done %}checked{% endif %} data-id="{{ task.id }}">
+                    <span>{{ task.text }}</span>
+                    <span class="trash-icon" data-id="{{ task.id }}">&times;</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <button class="return-button" onclick="window.location.href='/'">Volver a la Landing</button>
+    </div>
+    <script>
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const taskId = this.getAttribute('data-id');
+                fetch(`/update_task/${taskId}`, {
+                    method: 'POST'
+                });
+            });
+        });
+
+        document.querySelectorAll('.trash-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const taskId = this.getAttribute('data-id');
+                fetch(`/delete_task/${taskId}`, {
+                    method: 'POST'
+                }).then(() => {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noodfy - Landing Page</title>
+    <link rel="stylesheet" href="/static/landing.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Timmana&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://images.emojiterra.com/microsoft/fluent-emoji/512px/1f680_color.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Noodfy</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav no-search">
+                <li><a href="#about">Sobre Noodfy</a></li>
+                <li><a href="#info">Informacion</a></li>
+                <li><a href="#community">Comunidad</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="hero" class="hero animate">
+        <div class="hero-content">
+            <h1><span class="txt animate">Bienvenido a Noodfy 🚀</span></h1>
+            <p class="animate">Tu herramienta para recordar cosas que tienes que hacer en el día de manera eficiente y moderna.</p>
+            <a href="/tasks" class="cta-button animate">Prueba ahora la versión gratis</a>
+        </div>
+    </section>
+
+    <section id="info" class="info-section">
+        <h2 class="animate">Informacion</h2>
+        <p class="container-info animate">¿A que nos dedicamos? Bien noodfy viene para quedarse con esta nueva modalidad de lo que seria recordatorios atra vez de un nuevo sistema. Con nuestra version premium podras obtener diversas nuevas funciones para la aplicaion.</p>
+        <div class="pricing-container">
+            <div class="pricing-card animate">
+                <h3>Básico</h3>
+                <p class="price">$0</p>
+                <ul>
+                    <li>Recordatorios ilimitados</li>
+                    <li>Interfaz moderna</li>
+                    <li>Soporte básico</li>
+                    <li>Sin acceso a nuevas funciones</li>
+                </ul>
+                <a href="#" class="buy-button">Probar ahora</a>
+            </div>
+            <div class="pricing-card animate">
+                <h3>Premium</h3>
+                <p class="price">$0.99</p>
+                <ul>
+                    <li>Recordatorios ilimitados</li>
+                    <li>Interfaz moderna</li>
+                    <li>Soporte prioritario</li>
+                    <li>Acceso a nuevas funciones</li>
+                </ul>
+                <a href="#" class="buy-button">Comprar ahora</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="community" class="info-section">
+        <h2>Comunidad</h2>
+        <p>Únete a nuestro servidor de Discord para obtener información sobre las futuras actualizaciones, ofertas y códigos de descuento!</p>
+        <button class="ds-btn"><a href="https://discord.gg/7GayTpsCqn">Discord</a></button>
+    </section>
+    
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const nav = document.querySelector('nav ul');
+        mobileMenu.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            mobileMenu.classList.toggle('toggle');
+        });
+
+        let sections = document.querySelectorAll('section');
+
+        window.onscroll = () => {
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                
+                if (top >= offset && top < offset + height) {
+                    sec.classList.add('show-animate');
+                } else {
+                    sec.classList.remove('show-animate');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
